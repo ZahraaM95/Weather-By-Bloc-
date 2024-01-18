@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -6,14 +8,16 @@ import 'package:weather_app/models/modle_services.dart';
 class WeatherServices {
   final Dio dio;
   final String baseUrl='http://api.weatherapi.com/v1';
-  final String apiKay='a67b025af67649adb8f185727240701';
+  final String apiKay='8bb1e51267d148f49ea195858241701';
   WeatherServices(this.dio);
   Future<WeatherModle> getCurrentweather({
     required String cityName,
   }) async {
     try {
   Response response = await Dio().get(
-      '$baseUrl/current.json?key=$apiKay&q=$cityName&aqi=yes');
+'$baseUrl/current.json?key=$apiKay&q=$cityName&aqi=yes'
+   //'$baseUrl/current.json?key=$apiKay&q=$cityName&aqi=yes'
+      );
   WeatherModle weatherModle = WeatherModle.fromJson(response.data);
   print(response);
 
